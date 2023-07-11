@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Detail{% endblock %}
+
+{% block content %}
+<!-- buat 1 tabel dan sebelahnya tabel baru-->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card h-100">
+                <div class="card-header bg-dark text-light text-center">
+                    Deskripsi
+                </div>
+                <div class="card-body p-2">
+                    <p class="text-justify">{{ data.data[:1200] }}...</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Ukuran File</th>
+                    <td>{{ data.file_size }}</td>
+                </tr>
+                <tr>
+                    <th>Tipe File</th>
+                    <td>{{ data.file_type }}</td>
+                </tr>
+                <tr>
+                    <th>Download</th>
+                    <td><a href="/download?a={{ data.filename }}" class="btn btn-outline-dark ">Download</a></td>
+                </tr>
+
+               
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

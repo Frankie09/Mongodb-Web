@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Tambah Index{% endblock %}
+
+{% block content %}
+     <!-- make dropdown submit -->
+     <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="/tambah" method="POST" class="text-center">
+                    <h4 class="text-dark mb-3">Select Column and Input Weight</h4>
+                    <div class="form-group">
+                        <select class="form-control" id="combo" name="combo">
+                            {% for data in data %}
+                                <option>{{ data }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="berat" name="berat" type="text" placeholder="Weight">
+                    </div>
+                    <button type="submit" class="btn btn-outline-dark mt-3 w-100">Create</button>
+                </form>
+                <!-- get flash massage -->
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock %}

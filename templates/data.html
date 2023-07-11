@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% set active_page = 'data' %}
+{% block title %}Data{% endblock %}
+
+{% block content %}
+
+    <!-- table -->
+    <!-- search -->
+    <div class="container">
+
+            <div class="mt-3">
+          
+                <form action="/" method="POST">
+                    <label for="search"><h5>Cari Kata di Database</h5></label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                        <button type="submit" class="btn btn-outline-dark">search</button>
+                    </div>
+
+                </form>
+            </div>
+            
+        
+    <table>
+    <!-- hide table before search -->
+      <!-- flash -->
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <br>
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <!-- end flash -->
+    
+    {% if data %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+              
+                <th >ID</th>
+                <th scope="col" >Data</th>
+                <th style="white-space:nowrap">Score</th>
+                <th style="white-space:nowrap">Word Count</th>
+                
+                <th style="white-space:nowrap">Download</th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for isi in data %}
+            
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td ><a href="/detail?detail={{isi._id}}" class="text-justify text-decoration-none" >{{ isi.data[:50] }}...</a></td>
+               
+          
+                <td>{{'%0.2f'| format(isi.score|float)}}%</td>
+              
+                
+                <td > {{ isi.data|wordcount }}</td>
+                <td><a href="/download?a={{ isi.filename }}" class="btn btn-outline-dark ">Download</a></td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        {% endif %}
+
+{% endblock %}

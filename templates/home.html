@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% set active_page = 'upload' %}
+{% block title %}Upload{% endblock %}
+{% block content %}
+
+ <!-- form file upload bootstrap-->
+ <div class="container">
+    <div class="text-center d-flex justify-content-center align-items-center mt-5">
+        <div class="w-25">
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="formFileMultiple" class="form-label"> <h4>INPUT FILE PDF </h4>   </label>
+                    <input class="form-control" type="file" name="file[]" id="formFileMultiple" accept=".pdf" multiple>
+                </div>
+                <button type="submit" class="btn btn-outline-dark w-100">Upload</button>
+            </form>
+        </div>
+    </div>
+ </div>
+   
+{% endblock %}
